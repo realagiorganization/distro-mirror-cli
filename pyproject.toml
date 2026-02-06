@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "distro-mirror-cli"
+version = "0.1.0"
+description = "CLI for dockerized distro mirror images, repo sync, and sessions"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Realagi"}]
+
+[project.scripts]
+distro-mirror = "distromirror.cli:main"
