@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>Distro Mirror CLI</title>
+    <meta
+      name="description"
+      content="Distro Mirror CLI builds trimmed images, mirrors repos, and manages remote sessions."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Distro Mirror CLI</p>
+          <h1>Build lean distro mirrors and portable repo images.</h1>
+          <p class="lede">
+            Detect host distros, trim base images, and keep home repo
+            mirrors in sync. Launch repeatable SSH or RDP sessions with
+            one command.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#quick-start">Get started</a>
+            <a class="btn ghost" href="#command-map">See commands</a>
+          </div>
+          <div class="hero-tags">
+            <span>Docker aware</span>
+            <span>Repo mirror workflows</span>
+            <span>Session tracking</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <p class="card-title">Example flow</p>
+          <ol>
+            <li>Detect host distro</li>
+            <li>Build trimmed base image</li>
+            <li>Bundle home repo</li>
+            <li>Build mirror image</li>
+            <li>Open remote session</li>
+          </ol>
+        </div>
+      </header>
+
+      <section class="section" id="overview">
+        <div class="section-heading">
+          <p class="eyebrow">Overview</p>
+          <h2>Purpose-built CLI for distro + repo workflows.</h2>
+        </div>
+        <div class="grid three">
+          <article class="panel">
+            <h3>Detect + trim</h3>
+            <p>
+              Inspect host distro metadata and generate a minimal base
+              image plan for reproducible environments.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>Mirror + bundle</h3>
+            <p>
+              Keep home repo mirrors current, bundle them for portability,
+              and rebuild mirror images when needed.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>Track sessions</h3>
+            <p>
+              Store remote session metadata once and re-open SSH or RDP
+              connections with repeatable commands.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="command-map">
+        <div class="section-heading">
+          <p class="eyebrow">Command map</p>
+          <h2>Everything you need in one map.</h2>
+        </div>
+        <div class="table">
+          <div class="table-row table-head">
+            <span>Command</span>
+            <span>Purpose</span>
+            <span>Output</span>
+          </div>
+          <div class="table-row">
+            <span class="mono">image plan</span>
+            <span>Preview base image and trim packages</span>
+            <span>Console plan</span>
+          </div>
+          <div class="table-row">
+            <span class="mono">image build</span>
+            <span>Write Dockerfile (optionally build)</span>
+            <span>Dockerfile, mirror-plan.json</span>
+          </div>
+          <div class="table-row">
+            <span class="mono">repo init</span>
+            <span>Create a home repo mirror</span>
+            <span>Bare or working repo</span>
+          </div>
+          <div class="table-row">
+            <span class="mono">repo sync</span>
+            <span>Push or pull branches to a mirror repo</span>
+            <span>Synced refs</span>
+          </div>
+          <div class="table-row">
+            <span class="mono">repo bundle</span>
+            <span>Bundle a repo into a portable file</span>
+            <span>Bundle file</span>
+          </div>
+          <div class="table-row">
+            <span class="mono">repo mirror-build</span>
+            <span>Build a mirror image with a bundle</span>
+            <span>Docker context</span>
+          </div>
+          <div class="table-row">
+            <span class="mono">repo mirror-run</span>
+            <span>Run the mirror image</span>
+            <span>Container run commands</span>
+          </div>
+          <div class="table-row">
+            <span class="mono">session create</span>
+            <span>Save remote session metadata</span>
+            <span>sessions.json</span>
+          </div>
+          <div class="table-row">
+            <span class="mono">session open</span>
+            <span>Print or run session command</span>
+            <span>CLI command</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="quick-start">
+        <div class="section-heading">
+          <p class="eyebrow">Quick start</p>
+          <h2>Start mirroring in minutes.</h2>
+        </div>
+        <div class="code-block mono">
+          <pre><code>python -m distromirror image build --context .distro-mirror/build
+python -m distromirror repo init --path ~/.local/share/distro-mirror/home_repo
+python -m distromirror repo sync --source ~/src/project --mirror ~/.local/share/distro-mirror/home_repo
+python -m distromirror repo mirror-build --repo ~/src/project --context .distro-mirror/mirror-image
+python -m distromirror session create --type rdp --target lab-host:3389 --label lab-rdp
+python -m distromirror session open --label lab-rdp</code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="workflow">
+        <div class="section-heading">
+          <p class="eyebrow">Workflow</p>
+          <h2>From detection to session launch.</h2>
+        </div>
+        <div class="workflow">
+          <div class="step">Detect host distro</div>
+          <div class="step">Build trimmed base image</div>
+          <div class="step">Bundle home repo</div>
+          <div class="step">Build mirror image</div>
+          <div class="step">Open remote session</div>
+        </div>
+      </section>
+
+      <section class="section split">
+        <div class="panel">
+          <h3>BDD tests</h3>
+          <p>Run the behavior-driven suite to validate workflows.</p>
+          <div class="code-block mono">
+            <pre><code>pip install -r requirements-dev.txt
+behave</code></pre>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Configuration</h3>
+          <p>
+            Set <span class="mono">DISTRO_MIRROR_HOME</span> to override
+            the default storage directory.
+          </p>
+          <p class="muted">
+            Session metadata is stored in sessions.json under the home
+            directory.
+          </p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>MIT licensed. Built for repeatable distro + repo workflows.</p>
+      </footer>
+    </div>
+  </body>
+</html>
